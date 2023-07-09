@@ -1,0 +1,64 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+//Method1 //O(3n/2) and O(1)
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        if( head->next==NULL){
+      return head;
+  }
+  ListNode* temp=head;
+  int cnt=1;
+  while(temp->next!=NULL){
+      temp=temp->next;
+      cnt++;
+  }
+  ListNode* t=head;
+  ListNode* p=NULL;
+  int c=1;
+  int mid=cnt/2;
+  while(c<=mid){
+      p=t;
+      t=t->next;
+      c++;
+  }
+ 
+  return t;
+ 
+        
+    }
+};
+//Method 2//    O(N) and O(N)
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        vector<ListNode*> temp={head};
+        while(temp.back()->next!=NULL){
+            temp.push_back(temp.back()->next);
+        }
+        return temp[temp.size()/2];
+        
+    }
+};
+//Method 3//Optimal// O(N/2) and O(1)//slow and fast pointers
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(fast!=NULL && fast->next!=NULL){
+            fast =fast->next->next;
+            slow=slow->next;
+        }
+        return slow;
+    }
+};
+
