@@ -47,6 +47,61 @@ void insertAtHead(node* &head,int val){
     n->next=head;
     head=n;
 }
+//deletion generic code at any position
+void deleteElement(node* &head,int position){
+    
+    if(position==1){
+        node* temp=head;
+        head=head->next;
+        temp->next=NULL;
+        delete temp;
+        return;
+    }
+    node* curr=head;
+    node* prev=NULL;
+    int cnt=1;
+    while(cnt<position){
+        cnt++;
+        prev=curr;
+        curr=curr->next;
+
+    }
+    prev->next=curr->next;
+    curr->next=NULL;
+    delete curr;
+    return;
+}
+//insertion generic code at any position
+void insertAtPosition( node* & head, int position, int d) {
+
+
+    //insert at Start
+    if(position == 1) {
+        insertAtHead(head, d);
+        return;
+    }
+
+    node* temp  = head;
+    int cnt = 1;
+
+    while(cnt < position-1) {
+        temp = temp->next;
+        cnt++;
+    }
+
+    //inserting at Last Position
+    if(temp -> next == NULL) {
+        insertAtTail(head,d);
+        return ;
+    }
+
+    //creating a node for d
+    node* nodeToInsert = new node(d);
+
+    nodeToInsert -> next = temp -> next;
+
+    temp -> next = nodeToInsert;
+}
 
 // Seraching  At Linked List
 
