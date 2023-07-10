@@ -38,3 +38,49 @@ public:
         return head;
     }
 };
+Method 2 optimal ( 2pointer approach ) excellent approach;
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(0);
+        cout.tie(0);
+        ListNode* fast=head;
+        ListNode* slow=head;
+        ListNode* prev=head;
+        for(int i=1;i<n;i++){
+            fast=fast->next;
+        }
+        if(head->next==NULL){
+            return NULL;
+        }
+        if(fast->next==NULL){
+            return head->next;
+        }
+
+        while(fast->next!=NULL){
+            fast=fast->next;
+            prev=slow;
+            slow=slow->next;
+        }
+        
+        if(slow->next==NULL){
+            prev->next=NULL;
+            return head;
+        }
+        prev->next=slow->next;
+        slow->next=NULL;
+        return head;
+        
+    }
+};
