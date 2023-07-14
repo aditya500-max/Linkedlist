@@ -29,6 +29,7 @@ public:
            curr=curr->next;
        }
        return dummy->next;
+https://leetcode.com/problems/swap-nodes-in-pairs/solutions/1775033/swapping-nodes-not-just-the-values-visual-explanation-well-explained-c/
 
 
     }
