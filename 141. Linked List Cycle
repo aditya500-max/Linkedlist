@@ -1,4 +1,4 @@
-//Tortoise and hare approach
+//Tortoise and hare approach  or fast and slow pointer(Floyd's cycle-finding algorithm)
 //we move fast and slow pointer such that unless they met each other, they will definitely meet..proof:
 suppose d is the distance between slow pointer and fast pointer. Also slow pointer is ahead of fast because fast completed the cycle and was redirected to some inner node.
 
