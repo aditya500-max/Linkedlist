@@ -1,0 +1,9 @@
+//excellent solution// just Copy the next node to given node and then we can delete the next node easily.
+
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        node->val = node->next->val; //copying the next node value
+        node->next = node->next->next; // deleting the next node
+    }
+};
