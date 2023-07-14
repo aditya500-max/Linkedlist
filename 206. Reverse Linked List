@@ -1,0 +1,59 @@
+//bruteforce// reversing linked list using fast and slow pointer like // swapping kth node from front and back//
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+       ios::sync_with_stdio(0);
+       cin.tie(0);
+       cout.tie(0);
+        ListNode* temp=head;
+        int cnt=0;
+        while(temp!=NULL){
+          cnt++;
+          temp=temp->next;
+        }
+        temp=head;
+        for(int i=1;i<=cnt/2;i++){
+            ListNode* temp1=head;
+             ListNode* emp=head;
+           for(int j=i;j<cnt;j++){
+               
+               temp1=temp1->next;
+               emp=emp->next;
+           }
+           ListNode* temp2=head;
+           while(emp->next!=NULL){
+              temp2=temp2->next;
+              emp=emp->next;         
+
+           }
+           swap(temp1->val,temp2->val);
+        }
+        return head;
+    }
+};
+//Optimal//iterative//
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev=NULL;
+        ListNode* curr=head;
+        ListNode* nxt;
+        while(curr!=NULL){
+            nxt=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=nxt;
+        }
+        return prev;
+    }
+};
