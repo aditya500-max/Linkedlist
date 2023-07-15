@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+    int data;
+    node* prev;
+    node* next;
+    node(int val){
+        data=val;
+        prev=NULL;
+        next=NULL;
+    }
+
+};
+void insertHead(node* &head, int val){
+       node* n=new node(val);
+       n->next=head;
+       if(head!=NULL){
+       head->prev=n;
+       }
+       head=n;
+}
+void insertAttail(node* &head,int val){
+    node* n=new node(val);
+    if(head==NULL){
+        insertHead(head,val);
+        return;
+    }
+    node* temp=head;
+    while(temp->next!=NULL){
+        temp=temp->next;
+    }
+    temp->next=n;
+    n->prev=temp;
+}
+void display(node* &head){
+    node* temp=head;
+    while(temp!=NULL){
+         cout<<temp->data<<endl;
+         temp=temp->next;
+    }
+}
+int main(){
+    node* head=NULL;
+    insertAttail(head,1);
+    insertAttail(head,4);
+    insertAttail(head,3);
+    insertAttail(head,9);
+    insertHead(head,12);
+    insertHead(head,11);
+    display(head);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
