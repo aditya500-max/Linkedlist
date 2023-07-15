@@ -1,0 +1,52 @@
+//Solution exactly furthur version of reverse linked list bruteforce( kth node from front and kth node from back using fast and slow pointer )
+//still TLE
+ bool isPalindrome(ListNode* head) {
+        ListNode* temp=head;
+
+        int cnt=0;
+        while(temp!=NULL){
+          cnt++;
+          temp=temp->next;
+        }
+        temp=head;
+        for(int i=1;i<=cnt/2;i++){
+            ListNode* temp1=head;
+             ListNode* emp=head;
+           for(int j=i;j<cnt;j++){
+               
+               temp1=temp1->next;
+               emp=emp->next;
+           }
+           ListNode* temp2=head;
+           while(emp->next!=NULL){
+              temp2=temp2->next;
+              emp=emp->next;         
+
+           }
+           if(temp1->val!=temp2->val){
+               return false;
+           }
+        }
+        return true;
+    }
+//Method2 //using vector// then checking arr[i]!=arr[n-i-1]
+//TC=O(3n/2)
+//sc=O(N)
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        vector<int> arr;
+        while(head!=NULL){
+            arr.push_back(head->val);
+            head=head->next;
+        }
+        int n=arr.size();
+        for(int i=0;i<n/2;i++){
+            if(arr[i]!=arr[n-1-i]){
+                return false;
+            }
+        }
+        return true;
+    }
+};
+//Method3
