@@ -12,6 +12,28 @@ class node{
     }
 
 };
+void deleteAthead(node* &head){
+    node* temp=head;
+    head=head->next;
+    head->prev=NULL;
+    delete temp;
+}
+void deletion(node* &head, int pos){
+    if(pos==1){
+        deleteAthead(head);
+    }
+    int cnt=1;
+    node* temp=head;
+    while(temp!=NULL && pos!=cnt ){
+        cnt++;
+        temp=temp->next;
+    }
+    temp->prev->next=temp->next;
+    if(temp->next!=NULL){
+    temp->next->prev=temp->prev;
+    }
+    delete temp;
+}
 void insertHead(node* &head, int val){
        node* n=new node(val);
        n->next=head;
@@ -48,7 +70,10 @@ int main(){
     insertAttail(head,9);
     insertHead(head,12);
     insertHead(head,11);
+ deleteAthead(head);
+    
     display(head);
+ 
     return 0;
 }
 
