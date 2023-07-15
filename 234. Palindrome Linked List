@@ -49,4 +49,45 @@ public:
         return true;
     }
 };
-//Method3
+//Method3//Most Optimal//
+//Approach 3: Reverse Second Half In-place
+Specifically, the steps we need to do are:
+
+Find the end of the first half.
+Reverse the second half.
+Determine whether or not there is a palindrome.
+Restore the list.
+Return the result.
+
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        ListNode* slow=head;
+         ListNode* fast=head;
+          ListNode* temp=head;
+         while(fast->next!=NULL && fast->next->next!=NULL){
+             slow=slow->next;
+             fast=fast->next->next;
+         }
+         
+         
+          ListNode* curr=slow;
+           ListNode* nxt;
+            ListNode* prev=NULL;
+         while(curr!=NULL){
+             nxt=curr->next;
+             curr->next=prev;
+             prev=curr;
+             curr=nxt;
+
+         }
+         while(prev->next!=NULL){
+               if(temp->val!=prev->val){
+                   return false;
+               }
+               prev=prev->next;
+               temp=temp->next;
+         }
+         return true;
+    }
+};
