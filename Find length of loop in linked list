@@ -1,0 +1,50 @@
+//Furthure version of "finding starting point of Loop in LL" (tortoise and hare)
+
+/**
+ * Definition of linked list:
+ *
+ * class Node {
+ * public:
+ *      int data;
+ *      Node *next;
+ *
+ *      Node(int data) {
+ *          this->data = data;
+ *          this->next = NULL;
+ *      }
+ * };
+ *
+ *************************************************************************/
+
+int lengthOfLoop(Node *head) {
+     if(head==NULL||head->next==NULL){
+            return 0;
+        }
+        Node* fast=head;
+        Node* slow=head;
+        bool hascycle=false;
+        while(fast!=NULL && fast->next!=NULL){
+            fast=fast->next->next;
+            slow=slow->next;
+        
+        if(fast==slow){
+              hascycle=true;
+              break;
+        }
+        }
+        if(!hascycle){
+            return 0;
+        }
+        Node* temp=head;
+        while(temp!=slow){
+           temp=temp->next;
+           slow=slow->next;
+        }
+        int cnt=1;
+        while(temp->next!=slow){
+          temp=temp->next;
+          cnt++;
+        }
+        return cnt;
+    };
+
