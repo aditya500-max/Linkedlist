@@ -1,0 +1,101 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+   int data;
+   node* next;
+   node(int val){
+       data=val;
+       next=NULL;
+   }
+
+
+
+
+
+};
+
+
+
+
+
+void insertAttail(node* &head,int val){
+       node* Node=new node(val);
+       if(head==NULL){
+           head=Node;
+           return;
+       }
+       node* temp=head;
+       while(temp->next!=NULL){
+           temp=temp->next;
+       }
+       temp->next=Node;
+       return;
+
+}
+void display(node* &head){
+   node* temp=head;
+   while(temp!=NULL){
+       cout<<temp->data<<endl;
+       temp=temp->next;
+   }
+   return;
+
+
+}
+int length(node* & head){
+    int cnt=0;
+    node* temp=head;
+    while(temp!=NULL){
+        cnt++;
+        temp=temp->next;
+    }
+    return cnt;
+}
+void kappend(node* &head,int k){
+     int l=length(head);
+     node* temp=head;
+     node* newTail;
+     node* newHead;
+     node* tail=head;
+     while(tail->next!=NULL){
+         tail=tail->next;
+     }
+     int cnt=1;
+     while(temp!=NULL){
+         cnt++;
+         temp=temp->next;
+         if(cnt==l-k){
+             newTail=temp;
+         }
+         if(cnt==l-k+1){
+             newHead=temp;
+             break;
+         }
+         
+     }
+
+         newTail->next=NULL;
+         tail->next=head;
+         head=newHead;
+         tail=newTail;
+         
+         
+     
+}
+
+int main(){
+    node* head=NULL;
+    int arr[]={1,2,3,4,5,6};
+    for(int i=0;i<6;i++){
+        insertAttail(head,arr[i]);
+    }
+    //display(head);
+   kappend(head,4);
+    display(head);
+
+ 
+    
+    return 0;
+}
